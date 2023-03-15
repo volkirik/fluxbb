@@ -19,7 +19,7 @@ class PgsqlDBLayer implements DBLayer
 	var $prefix;
 	var $link_id;
 	var $query_result;
-	var $last_query_text = array();
+	var $last_query_text = '';
 	var $in_transaction = 0;
 
 	var $saved_queries = array();
@@ -116,7 +116,7 @@ class PgsqlDBLayer implements DBLayer
 
 			++$this->num_queries;
 
-			$this->last_query_text[intval($this->query_result)] = $sql;
+			$this->last_query_text = $sql;
 
 			return $this->query_result;
 		}
@@ -129,9 +129,11 @@ class PgsqlDBLayer implements DBLayer
 			$this->error_msg = @pg_result_error($this->query_result);
 
 			if ($this->in_transaction)
+			( 
+				--$this->in_transaction;
 				@pg_query($this->link_id, 'ROLLBACK');
-
-			--$this->in_transaction;
+			}
+			$this->last_query_text = '';
 
 			return false;
 		}
@@ -170,11 +172,9 @@ class PgsqlDBLayer implements DBLayer
 
 	function insert_id()
 	{
-		$query_id = $this->query_result;
-
-		if ($query_id && $this->last_query_text[intval($query_id)] != '')
+		if ($this->query_result && $this->last_query_text != '')
 		{
-			if (preg_match('%^INSERT INTO ([a-z0-9\_\-]+)%is', $this->last_query_text[intval($query_id)], $table_name))
+			if (preg_match('%^INSERT INTO ([a-z0-9\_\-]+)%is', $this->last_query_text, $table_name))
 			{
 				// Hack (don't ask)
 				if (substr($table_name[1], -6) == 'groups')
@@ -212,7 +212,7 @@ class PgsqlDBLayer implements DBLayer
 
 	function escape($str)
 	{
-		return is_array($str) ? '' : pg_escape_string($str);
+		return is_array($str) ? '' : pg_escape_string($this->link_id, $str);
 	}
 
 
