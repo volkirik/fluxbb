@@ -107,7 +107,7 @@ class MysqlDBLayer implements DBLayer
 			if ($cur_row === false)
 				return false;
 
-			return $cur_row[$col];
+			if (isset($cur_row[$col])) return $cur_row[$col];
 		}
 		else
 			return false;
