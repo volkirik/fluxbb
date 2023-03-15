@@ -1,0 +1,56 @@
+.TableauDoc tr, .TableauDoc td {
+
+ padding: 5px;
+   text-align: center;
+   color: #1d1f1d;
+  background: #808080 ;
+  padding-top: 5px ;
+  width : 16% ;
+	border : 5px ;
+  empty-cells: hide;
+  table-layout: fixed;
+    
+ }
+
+
+/*.TableauDoc td img  {
+	 max-width: 100%;
+	 max-height: 100%;
+	 overflow: hidden ;
+	
+	padding-top: 20px;
+	
+	
+ }*/
+ 
+ 
+ 
+.TableauDoc td img{
+	padding-top: 2.25em ;
+	width: 150px; height: 120px; object-fit: cover;
+	 cursor:pointer;
+	filter: drop-shadow(0 0 0.25rem );
+	border-radius: 3px;
+ }
+ .TableauDoc tr img{
+	  max-width: 100%;
+	  border-radius: 3px;
+ }
+
+td  img:hover{
+	 -webkit-transform: scale(1.05);
+	transform: scale(1.05);
+}
+	
+.TableauDoc {
+	max-width : 95% ;
+	border : 1px ;
+  empty-cells: hide;
+  background: #808080 ;
+}
+
+.docswf
+{
+text-align: center ;
+color: #fff ;
+}
