@@ -83,12 +83,14 @@ if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' ||
 
 
 // Check for the existence of various PHP opcode caches/optimizers
-if (function_exists('mmcache'))
-	$php_accelerator = '<a href="http://'.$lang_admin_index['Turck MMCache link'].'">'.$lang_admin_index['Turck MMCache'].'</a>';
+if (ini_get('opcache.enable') && function_exists('opcache_invalidate'))
+	$php_accelerator = '<a href="https://www.php.net/opcache/">Zend OPcache</a>';
+elseif (ini_get('wincache.fcenabled'))
+	$php_accelerator = '<a href="https://www.php.net/wincache/">Windows Cache for PHP</a>';
 else if (isset($_PHPA))
 	$php_accelerator = '<a href="http://'.$lang_admin_index['ionCube PHP Accelerator link'].'">'.$lang_admin_index['ionCube PHP Accelerator'].'</a>';
 else if (ini_get('apc.enabled'))
-	$php_accelerator ='<a href="http://'.$lang_admin_index['Alternative PHP Cache (APC) link'].'">'.$lang_admin_index['Alternative PHP Cache (APC)'].'</a>';
+	$php_accelerator = '<a href="https://web.archive.org/web/20160324235630/http://www.php.net/apc/">Alternative PHP Cache (APC)</a>';
 else if (ini_get('zend_optimizer.optimization_level'))
 	$php_accelerator = '<a href="http://'.$lang_admin_index['Zend Optimizer link'].'">'.$lang_admin_index['Zend Optimizer'].'</a>';
 else if (ini_get('eaccelerator.enable'))
