@@ -97,7 +97,7 @@ generate_admin_menu('index');
 					</dd>
 					<dt><?php echo $lang_admin_index['Support label'] ?></dt>
 					<dd>
-						<a href="https://fluxbb.org/forums/index.php"><?php echo $lang_admin_index['Forum label'] ?></a> - <a href="https://fluxbb.org/community/irc.html"><?php echo $lang_admin_index['IRC label'] ?></a>
+						<a href="http://fluxbb.fr/forums/index.php"><?php echo $lang_admin_index['Forum label'] ?></a>
 					</dd>
 				</dl>
 			</div>
