@@ -165,7 +165,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 
 .pun {
 	max-width: 1920px;
-	min-width: 320px;
+	width: 98 %;
 	margin: 0 auto;
 	padding: 30px 40px;
 }

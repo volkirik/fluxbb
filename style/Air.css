@@ -1,32 +1,4 @@
 
-Skip to content
-Pull requests
-Issues
-Codespaces
-Marketplace
-Explore
-@Elementtair
-MioVisman /
-FluxBB_by_Visman
-Public
-
-Fork your own copy of MioVisman/FluxBB_by_Visman
-
-Code
-Issues 5
-Pull requests
-Actions
-Security
-
-    Insights
-
-FluxBB_by_Visman/style/Air.css
-@MioVisman
-MioVisman Update styles
-Latest commit 80769f6 Mar 7, 2023
-History
-1 contributor
-2165 lines (1752 sloc) 36.8 KB
 /*****************************************************************
 1. INITIAL SETTINGS
 *****************************************************************/
@@ -194,8 +166,8 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 ----------------------------------------------------------------*/
 
 .pun {
-	max-width: 1100px;
-	min-width: 320px;
+	max-width: 1920px;
+	width: 98 %;
 	margin: 0 auto;
 	padding: 30px 40px;
 }
