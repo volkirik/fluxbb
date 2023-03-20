@@ -19,7 +19,7 @@ $lang_login = array(
 'New password errors'		=>	'Erreur pour demande de mot de passe',
 'New passworderrors info'	=>	'Les erreurs suivantes doivent être corrigées avant qu\'un nouveau mot de passe puisse être envoyé&#160;:',
 'Login errors'           => 'Erreur de connexion',
-'Login errors info"      => 'Mauvais nom d\'utilisateur et/ou mot de passe',
+'Login errors info'      => 'Mauvais nom d\'utilisateur et/ou mot de passe',
 // Forget password mail stuff
 'Forget mail'			=>	'Un e-mail contenant des instructions pour modifier votre mot de passe vient d\'être envoyé à l\'adresse indiquée. Si vous ne le recevez pas, vous pouvez contacter l\'administrateur des forums&#160;: ',
 'Email flood'			=>	'Une réinitialisation du mot de passe de ce compte a été effectuée il y a moins d\'une heure. Veuillez patienter un moment avant de réclamer un nouveau mot de passe.'
