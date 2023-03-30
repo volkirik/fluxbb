@@ -139,9 +139,9 @@ class MysqlInnodbDBLayer implements DBLayer
 	}
 
 
-	function has_rows($query_id)
+	function num_rows($query_id = 0)
 	{
-		return $query_id ? mysqli_num_rows($query_id) > 0 : false;
+		return ($query_id) ? @mysqli_num_rows($query_id) : false;
 	}
 
 
@@ -232,14 +232,14 @@ class MysqlInnodbDBLayer implements DBLayer
 	function table_exists($table_name, $no_prefix = false)
 	{
 		$result = $this->query('SHOW TABLES LIKE \''.($no_prefix ? '' : $this->prefix).$this->escape($table_name).'\'');
-		return $this->has_rows($result);
+		return $this->num_rows($result) > 0;
 	}
 
 
 	function field_exists($table_name, $field_name, $no_prefix = false)
 	{
 		$result = $this->query('SHOW COLUMNS FROM '.($no_prefix ? '' : $this->prefix).$table_name.' LIKE \''.$this->escape($field_name).'\'');
-		return $this->has_rows($result);
+		return $this->num_rows($result) > 0;
 	}
 
 

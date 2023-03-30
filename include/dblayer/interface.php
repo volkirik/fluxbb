@@ -20,7 +20,7 @@ interface DBLayer
 
 	public function fetch_row($query_id = 0);
 
-	public function has_rows($query_id);
+	public function num_rows($query_id);
 
 	public function affected_rows();
 
