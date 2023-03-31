@@ -28,10 +28,12 @@ require PUN_ROOT.'lang/'.$pun_user['language'].'/topic.php';
 if ($pid)
 {
 	$result = $db->query('SELECT topic_id, posted FROM '.$db->prefix.'posts WHERE id='.$pid) or error('Unable to fetch topic ID', __FILE__, __LINE__, $db->error());
-	if (!$db->num_rows($result))
-		message($lang_common['Bad request'], false, '404 Not Found');
-
+	
 	list($id, $posted) = $db->fetch_row($result);
+	
+	if (!$id)
+	
+		message($lang_common['Bad request'], false, '404 Not Found');
 
 	// Determine on which page the post is located (depending on $forum_user['disp_posts'])
 	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'posts WHERE topic_id='.$id.' AND posted<'.$posted) or error('Unable to count previous posts', __FILE__, __LINE__, $db->error());
@@ -85,10 +87,12 @@ if (!$pun_user['is_guest'])
 else
 	$result = $db->query('SELECT t.subject, t.closed, t.num_replies, t.sticky, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies, 0 AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 
-if (!$db->num_rows($result))
-	message($lang_common['Bad request'], false, '404 Not Found');
 
 $cur_topic = $db->fetch_assoc($result);
+
+if (!$cur_topic)
+	message($lang_common['Bad request'], false, '404 Not Found');
+
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_topic['moderators'] != '') ? unserialize($cur_topic['moderators']) : array();
