@@ -31,9 +31,9 @@ switch ($db_type)
 		$db = new PgsqlDBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect);
 		break;
 
-	case 'sqlite':
-		require_once PUN_ROOT.'include/dblayer/sqlite.php';
-		$db = new SqliteDBLayer($db_name, $db_prefix, $p_connect);
+	case 'sqlite3':
+		require_once PUN_ROOT.'include/dblayer/sqlite3.php';
+		$db = new SqliteDBLayer($db_host, $db_username, $db_password,$db_name, $db_prefix, $p_connect);
 		break;
 
 	default:
